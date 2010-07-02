@@ -1,9 +1,11 @@
 package models;
 
-import java.util.*;
-import javax.persistence.*;
+import play.db.jpa.Model;
 
-import play.db.jpa.*;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -41,6 +43,5 @@ public class Post extends Model {
         this.comments.add(newComment);
         return this;
     }
-
 
 }

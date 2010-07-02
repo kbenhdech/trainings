@@ -7,6 +7,8 @@ import play.*;
 
 import models.*;
 
+import static org.codehaus.groovy.transform.powerassert.AssertionRenderer.render;
+
 public class Application extends Controller {
 
     public static void index() {
@@ -21,5 +23,9 @@ public class Application extends Controller {
         renderArgs.put("blogBaseline", Play.configuration.getProperty("blog.baseline"));
     }
 
+    public static void show(Long id) {
+        Post post = Post.findById(id);
+        render(post);
+    }
 
 }
