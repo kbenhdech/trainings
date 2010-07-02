@@ -4,10 +4,10 @@
 
 # Home page
 GET     /                                       Application.index
+GET       /posts/{id}                             Application.show
 
 # Map static resources from the /app/public folder to the /public path
 GET     /public/                                staticDir:public
 
 # Catch all
-*       /posts/{id}                             Application.show
-
+*       /{controller}/{action}                  {controller}.{action}
