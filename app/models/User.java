@@ -16,7 +16,7 @@ import play.db.jpa.*;
 public class User extends Model {
 
     public String email;
-    
+
     public String password;
 
     public String fullname;
@@ -29,10 +29,10 @@ public class User extends Model {
         this.fullname = fullname;
     }
 
-public static User connect(String email, String password) {
-    return find("byEmailAndPassword", email, password).first();
-}
-    
+    public static User connect(String email, String password) {
+        return find("byEmailAndPassword", email, password).first();
+    }
+
 
 }
 
