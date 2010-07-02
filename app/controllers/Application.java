@@ -30,10 +30,11 @@ public class Application extends Controller {
 
     public static void postComment(Long postId, @Required String author, @Required String content) {
         Post post = Post.findById(postId);
-        if (validation.hasErrors()) {
+        if(validation.hasErrors()) {
             render("Application/show.html", post);
         }
         post.addComment(author, content);
+        flash.success("Thanks for posting %s", author);
         show(postId);
     }
 
