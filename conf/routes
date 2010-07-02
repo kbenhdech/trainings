@@ -9,4 +9,5 @@ GET     /                                       Application.index
 GET     /public/                                staticDir:public
 
 # Catch all
-*       /{controller}/{action}                  {controller}.{action}
+*       /posts/{id}                             Application.show
+
