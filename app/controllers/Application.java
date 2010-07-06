@@ -50,8 +50,6 @@ public class Application extends Controller {
         show(postId);
     }
 
-
-
     public static void captcha(String id) {
         Images.Captcha captcha = Images.captcha();
         String code = captcha.getText("#E4EAFD");
@@ -59,6 +57,9 @@ public class Application extends Controller {
         renderBinary(captcha);
     }
 
-
+    public static void listTagged(String tag) {
+        List<Post> posts = Post.findTaggedWith(tag);
+        render(tag, posts);
+    }
 
 }

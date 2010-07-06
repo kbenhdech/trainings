@@ -3,6 +3,7 @@ package models;
 import java.util.*;
 import javax.persistence.*;
 
+import play.data.validation.Required;
 import play.db.jpa.*;
 
 /**
@@ -12,12 +13,10 @@ import play.db.jpa.*;
  * Time: 19:05:28
  * To change this template use File | Settings | File Templates.
  */
-
-
-
 @Entity
 public class Tag extends Model implements Comparable<Tag> {
 
+    @Required
     public String name;
 
     private Tag(String name) {
