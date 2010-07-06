@@ -3,9 +3,7 @@ package models;
 import play.db.jpa.Model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by IntelliJ IDEA.
@@ -30,13 +28,31 @@ public class Post extends Model {
     @OneToMany(mappedBy="post", cascade=CascadeType.ALL)
     public List<Comment> comments;
 
+    @ManyToMany(cascade=CascadeType.PERSIST)
+    public Set<Tag> tags;
+
+
     public Post(User author, String title, String content) {
         this.comments = new ArrayList<Comment>();
+        this.tags = new TreeSet<Tag>();
         this.author = author;
         this.title = title;
         this.content = content;
         this.postedAt = new Date();
     }
+
+    public Post tagItWith(String name) {
+        tags.add(Tag.findOrCreateByName(name));
+        return this;
+    }
+
+    public static List<Post> findTaggedWith(String tag) {
+        return Post.find(
+                "select distinct p from Post p join p.tags as t where t.name = ?", tag
+        ).fetch();
+    }
+
+
 
     public Post addComment(String author, String content) {
         Comment newComment = new Comment(this, author, content).save();
