@@ -1,7 +1,56 @@
-@(message: String)
+@(
+message: String,
+bookmarks: List[models.Bookmark],
+categories: List[models.Category]
+)
 
-@main("Bonjour") {
-    
-    @play20.welcome(message, style = "Java")
-    
+@main("Gestion des bookmarks") {
+
+<h1>BookMarks</h1>
+<p>@message</p>
+<!-- Formulaire de saisie : Catégories -->
+<fieldset>
+    <legend>Nouvelle Cat&eacute;gorie</legend>
+    <!--<form method="post" action="@routes.Categories.add()">-->
+    <form method="post" action="/category/add">
+        <input name="label" placeholder="label">
+        <button type="submit">Ajouter la Cat&eacute;gorie</button>
+    </form>
+</fieldset>
+<!-- Liste des Catégories -->
+<ul>
+    @for(category <- categories) {
+    <li>@category.id @category.label</li>
+    }
+</ul>
+
+<!-- Formulaire de saisie : Bookmarks -->
+
+<fieldset>
+    <legend>Nouveau Bookmark</legend>
+    <!--<form method="post" action="@routes.Bookmarks.add()">-->
+    <form method="post" action="/bookmark/add">
+        <input name="title" placeholder="title">
+        <input name="url" placeholder="url">
+        <input name="details" placeholder="details">
+
+        <select size="1" name="category.id">
+            @for(category <- categories) {
+            <option value="@category.id">@category.label</option>
+            }
+        </select>
+
+        <button type="submit">Ajouter le Bookmark</button>
+    </form>
+</fieldset>
+<!-- Liste des Bookmarks -->
+<ul>
+    @for(bookmark <- bookmarks) {
+    <li>@bookmark.title : <a href="@bookmark.url">@bookmark.url</a> :
+        @if(bookmark.category != null) {
+        @bookmark.category.label
+        }
+    </li>
+    }
+</ul>
 }
