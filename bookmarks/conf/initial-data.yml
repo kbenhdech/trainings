@@ -1,15 +1,30 @@
-# Categories
-
 categories:
 
     - !!models.Category
+        id:      1
         label:   Javascript
 
     - !!models.Category
+        id:      2
         label:   Java
 
     - !!models.Category
+        id:      3
         label:   Coffeescript
+
+bookmarks:
+
+    - !!models.Bookmark
+        title:    CoffeeBean
+        url:      http://coffeebean.loicdescotte.com/
+        category: !!models.Category
+                    id:    2
+
+    - !!models.Bookmark
+        title:    K33g_org
+        url:      http://k33g.github.com/
+        category: !!models.Category
+                    id:    1
 
 users:
 

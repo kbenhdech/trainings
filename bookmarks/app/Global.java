@@ -30,6 +30,10 @@ public class Global extends GlobalSettings {
                     Ebean.save(all.get("categories"));
                 }
 
+                if(Ebean.find(Bookmark.class).findRowCount() == 0) {
+                    Ebean.save(all.get("bookmarks"));
+                }
+
             }
         }
 
