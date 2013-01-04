@@ -7,16 +7,18 @@ categories: List[models.Category]
 @main("Gestion des bookmarks") {
 
 <h1>BookMarks</h1>
-<p>@message</p>
+<h6>@message</h6>
+
 <!-- Formulaire de saisie : Catégories -->
 <fieldset>
-    <legend>Nouvelle Cat&eacute;gorie</legend>
+    <h2>Nouvelle Cat&eacute;gorie</h2>
     <!--<form method="post" action="@routes.Categories.add()">-->
     <form method="post" action="/category/add">
         <input name="label" placeholder="label">
-        <button type="submit">Ajouter la Cat&eacute;gorie</button>
+        <button class="btn" type="submit">Ajouter la Cat&eacute;gorie</button>
     </form>
 </fieldset>
+
 <!-- Liste des Catégories -->
 <ul>
     @for(category <- categories) {
@@ -25,9 +27,8 @@ categories: List[models.Category]
 </ul>
 
 <!-- Formulaire de saisie : Bookmarks -->
-
 <fieldset>
-    <legend>Nouveau Bookmark</legend>
+    <h2>Nouveau Bookmark</h2>
     <!--<form method="post" action="@routes.Bookmarks.add()">-->
     <form method="post" action="/bookmark/add">
         <input name="title" placeholder="title">
@@ -40,9 +41,10 @@ categories: List[models.Category]
             }
         </select>
 
-        <button type="submit">Ajouter le Bookmark</button>
+        <button class="btn" type="submit">Ajouter le Bookmark</button>
     </form>
 </fieldset>
+
 <!-- Liste des Bookmarks -->
 <ul>
     @for(bookmark <- bookmarks) {
