@@ -20,6 +20,7 @@
           href="@routes.Assets.at("images/favicon.png")">
     <script src="@routes.Assets.at("javascripts/jquery-1.7.1.min.js")"
     type="text/javascript"></script>
+    <script src="@routes.Assets.at("javascripts/myapp.js")" type="text/javascript"></script>
 </head>
 <body>
 
@@ -62,119 +63,5 @@
 </div>
 
 </body>
-
-<!-- === ici votre code applicatif === -->
-<script>
-    /*=== mon code ne s'exécute qu'une fois le DOM complètement chargé ===*/
-    $(function (){
-
-    //définition des différents éléments d'IHM
-    var user = {}
-    ,   alertAuthentication = $('div[name=authentication]')
-    ,   loginButton = $("button[name=login]")
-    ,   logoutButton = $("button[name=logout]")
-    ,   loadBookmarksButton = $("button[name=loadbookmarks]")
-    ,   email = $('input[name=email]')
-    ,   password = $('input[name=password]')
-    ,   labels = $('label')
-    ,   bookmarksList = $('ul[name=bookmarks]');
-
-    // onclick du bouton login
-    loginButton.click(function(){
-
-    user.email = email.val();
-    user.password = password.val();
-    $.ajax({
-    type:"POST",
-    url:"/loginjson", data:{
-    email : user.email,
-    password : user.password
-    },
-    error : function(err){console.log("Erreur", err);},
-    success : function(data){
-    if(data !== "badRequest") {
-    alertAuthentication
-    .attr('class','alert alert-success')
-    .html('<strong>Bienvenue !</strong> ' + data);
-    user.name = data;
-
-    labels.hide();
-    email.hide();
-    password.hide();
-    loginButton.hide();
-
-    } else {
-    alertAuthentication
-    .attr('class','alert alert-error')
-    .html('<strong>Oups !</strong> vous avez du vous tromper');
-    }
-    }
-    });
-    });
-
-    // onclick du bouton logout
-    logoutButton.click(function(){
-
-    $.ajax({
-    type:"GET",
-    url:"/logoutjson",
-    error : function(err){console.log("Erreur", err);},
-    success : function(data){
-
-    if(user.name) {
-    alertAuthentication
-    .attr('class','alert alert-info')
-    .html('<strong>Au revoir</strong> ' + user.name);
-
-    labels.show();
-    email.show();
-    password.show();
-    loginButton.show();
-
-    user = {};
-
-    bookmarksList.html('');
-    }
-
-
-    }
-    });
-    });
-
-    // onclick du bouton de chargement des bookmarks
-    loadBookmarksButton.click(function(){
-    $.ajax({type:"GET", url:"/bookmarks/jsonlist",
-    error : function(err){ console.log(err); },
-    success : function(data) {
-
-    if(data !== "failed") {
-    bookmarksList.html('');
-    data.bookmarks.forEach(function(bookmark){
-    bookmarksList.append(
-    $('<li>')
-    .append($('<b>').append(bookmark.title))
-        .append(' | ')
-        .append($('<a>').attr("href",bookmark.url)
-            .append(bookmark.url))
-            .append(' | ')
-            .append($('<i>')
-                .append(bookmark.details))
-                .append(' | (')
-                .append(bookmark.category.label).append(')')
-                );
-                });
-                } else {
-                alertAuthentication
-                .attr('class','alert alert-error')
-                .html('<strong>Il faut être authentifié !</strong> \n pour obtenir la liste des bookmarks');
-                }
-                }
-                });
-                });
-
-
-
-                });
-</script>
 
 </html>
