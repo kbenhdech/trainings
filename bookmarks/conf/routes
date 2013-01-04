@@ -10,3 +10,8 @@ POST /category/add  controllers.Categories.add()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
+
+# Authentication
+GET     /login                              controllers.Authentication.login()
+POST    /login                              controllers.Authentication.authenticate()
+GET     /logout                             controllers.Authentication.logout()

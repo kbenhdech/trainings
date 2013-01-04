@@ -21,8 +21,14 @@ public class Global extends GlobalSettings {
                 Map<String,List<Object>> all =
                         (Map<String,List<Object>>)Yaml.load("initial-data.yml");
 
-                // Insert categories first
-                Ebean.save(all.get("categories"));
+                if(Ebean.find(User.class).findRowCount() == 0) {
+                    Ebean.save(all.get("users"));
+                }
+
+                if(Ebean.find(Category.class).findRowCount() == 0) {
+                    // Insert categories first
+                    Ebean.save(all.get("categories"));
+                }
 
             }
         }

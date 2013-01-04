@@ -33,6 +33,14 @@ public class User extends Model {
         return find.where().eq("email", email).findUnique();
     }
 
+    //TODO : expliquer ce que fait le code
+    public static User authenticate(String email, String password) {
+        return find.where()
+                .eq("email", email)
+                .eq("password", password)
+                .findUnique();
+    }
+
     public String toString() {
         return "User(" + email + ")";
     }

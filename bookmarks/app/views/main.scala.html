@@ -1,4 +1,4 @@
-@(title: String)(content: Html)
+@(title: String, user: User)(content: Html)
 
 <!DOCTYPE html>
 
@@ -28,6 +28,12 @@
     <div class="navbar-inner">
         <div class="container">
             <a class="brand">@title</a>
+            @if(user != null) {
+            <ul class="nav">
+                <li><a>@user.name <span>(@user.email)</span></a></li>
+                <li><a href="@routes.Authentication.logout()">Logout</a></li>
+            </ul>
+            }
         </div>
     </div>
 </div>
