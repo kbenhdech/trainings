@@ -15,3 +15,9 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 GET     /login                              controllers.Authentication.login()
 POST    /login                              controllers.Authentication.authenticate()
 GET     /logout                             controllers.Authentication.logout()
+
+POST    /loginjson                          controllers.AuthenticationJson.authenticate()
+GET     /logoutjson                         controllers.AuthenticationJson.logout()
+
+#Services
+GET /bookmarks/jsonlist controllers.Bookmarks.jsonList()
