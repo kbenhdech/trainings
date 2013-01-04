@@ -21,3 +21,6 @@ GET     /logoutjson                         controllers.AuthenticationJson.logou
 
 #Services
 GET /bookmarks/jsonlist controllers.Bookmarks.jsonList()
+
+# Main Single Page Application
+GET     /main                       controllers.SingleApp.mainPage()
