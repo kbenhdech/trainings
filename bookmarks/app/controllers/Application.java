@@ -2,6 +2,7 @@ package controllers;
 
 import models.Bookmark;
 import models.Category;
+import models.User;
 import play.*;
 import play.mvc.*;
 
@@ -13,7 +14,9 @@ public class Application extends Controller {
     return ok(index.render(
             "Vous pouvez commencer à saisir ...",
             Bookmark.find.fetch("category").orderBy("title").findList(),
-            Category.find.orderBy("label").findList()
+            Category.find.orderBy("label").findList(),
+            null,//User.find.byId(request().username()),
+            form(Category.class) //<--- c'est ici
     ));
   }
   

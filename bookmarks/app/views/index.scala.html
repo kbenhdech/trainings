@@ -1,9 +1,11 @@
 @(
 message: String,
 bookmarks: List[models.Bookmark],
-categories: List[models.Category]
+categories: List[models.Category],
+user: User,
+categoryForm: Form[models.Category]
 )
-
+@import html5.tags.html._
 @main("Gestion des bookmarks") {
 
 <h1>BookMarks</h1>
@@ -14,7 +16,7 @@ categories: List[models.Category]
     <h2>Nouvelle Cat&eacute;gorie</h2>
     <!--<form method="post" action="@routes.Categories.add()">-->
     <form method="post" action="/category/add">
-        <input name="label" placeholder="label">
+        @text(categoryForm("label"), 'placeholder -> "saisir un label")
         <button class="btn" type="submit">Ajouter la Cat&eacute;gorie</button>
     </form>
 </fieldset>
