@@ -19,6 +19,12 @@ categories: List[models.Category]
     </form>
 </fieldset>
 
+@if(flash.containsKey("error")) {
+<div class="alert alert-error"> <!-- ceci est un style twitter bootstrap -->
+    <strong>Oups!</strong> @flash.get("error")
+</div>
+}
+
 <!-- Liste des Catégories -->
 <ul>
     @for(category <- categories) {
