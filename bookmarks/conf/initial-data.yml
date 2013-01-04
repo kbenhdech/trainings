@@ -1,0 +1,12 @@
+# Categories
+
+categories:
+
+    - !!models.Category
+        label:   Javascript
+
+    - !!models.Category
+        label:   Java
+
+    - !!models.Category
+        label:   Coffeescript
