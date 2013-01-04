@@ -20,6 +20,7 @@ public class User extends Model {
     public String name;
 
     @Constraints.Required
+    @Formats.NonEmpty
     public String password;
 
     public static Model.Finder<String,User> find =
